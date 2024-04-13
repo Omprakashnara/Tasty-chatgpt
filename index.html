@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Village Tasty Restaurant</title>
+    <style>
+        /* Basic Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #f2c94c;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+        }
+        section {
+            padding: 20px;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        /* Menu Styles */
+        .menu-item {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 200px;
+            text-align: center;
+        }
+        /* Map Styles */
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Village Tasty Restaurant</h1>
+    </header>
+    <nav>
+        <a href="#menu">Menu</a>
+        <a href="#about">About</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#reservations">Reservations</a>
+    </nav>
+    <section id="menu">
+        <h2>Menu</h2>
+        <button onclick="filterMenu('all')">All</button>
+        <button onclick="filterMenu('appetizers')">Appetizers</button>
+        <button onclick="filterMenu('entrees')">Entrees</button>
+        <button onclick="filterMenu('desserts')">Desserts</button>
+        <div id="menu-items">
+            <!-- Menu items will be dynamically added here -->
+        </div>
+    </section>
+    <section id="about">
+        <h2>About the Restaurant</h2>
+        <p>Add your restaurant's description here.</p>
+    </section>
+    <section id="testimonials">
+        <h2>Customer Testimonials</h2>
+        <p>Add customer testimonials here.</p>
+    </section>
+    <section id="reservations">
+        <h2>Reservations</h2>
+        <p>Add reservation form or information here.</p>
+    </section>
+    <footer>
+        <p>&copy; 2024 Village Tasty Restaurant</p>
+    </footer>
+    <!-- Google Maps Embed -->
+    <div id="map"></div>
+    <script>
+        function filterMenu(category) {
+            var items = document.getElementsByClassName('menu-item');
+            if (category === 'all') {
+                for (var i = 0; i < items.length; i++) {
+                    items[i].style.display = 'inline-block';
+                }
+            } else {
+                for (var i = 0; i < items.length; i++) {
+                    if (items[i].dataset.category === category) {
+                        items[i].style.display = 'inline-block';
+                    } else {
+                        items[i].style.display = 'none';
+                    }
+                }
+            }
+        }
+    </script>
+    <script>
+        // Google Maps Embed
+        function initMap() {
+            var location = {lat: YOUR_LATITUDE, lng: YOUR_LONGITUDE}; // Replace with your restaurant's latitude and longitude
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 15,
+                center: location
+            });
+            var marker = new google.maps.Marker({
+                position: location,
+                map: map
+            });
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+</body>
+</html>
